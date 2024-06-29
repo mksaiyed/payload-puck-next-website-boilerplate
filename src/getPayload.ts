@@ -4,7 +4,7 @@ import type { Payload } from 'payload'
 import payload from 'payload'
 import type { InitOptions } from 'payload/config'
 
-import { seed as seedData } from './seed'
+import { seed as seedData } from './payload/seed'
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),

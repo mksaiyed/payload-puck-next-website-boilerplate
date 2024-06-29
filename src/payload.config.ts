@@ -1,6 +1,6 @@
 import { webpackBundler } from '@payloadcms/bundler-webpack'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { defaultEditorConfig, defaultEditorFeatures, lexicalEditor } from '@payloadcms/richtext-lexical'
 import dotenv from 'dotenv'
 import path from 'path'
 
@@ -10,12 +10,19 @@ dotenv.config({
 
 import { buildConfig } from 'payload/config'
 
-import { Pages } from './collections/Pages'
+import { Pages } from './payload/collections/Pages'
 import BeforeLogin from './components/BeforeLogin'
+import { Users } from './payload/collections/Users'
+import { Media } from './payload/collections/Media'
 
-export default buildConfig({
+export const serverEditorConfig = defaultEditorConfig;
+serverEditorConfig.features = [
+  ...defaultEditorFeatures,
+]
+
+const config = {
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
-  collections: [Pages],
+  collections: [Users, Pages, Media],
   admin: {
     bundler: webpackBundler(),
     components: {
@@ -29,4 +36,6 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
-})
+}
+
+export default buildConfig(config)
