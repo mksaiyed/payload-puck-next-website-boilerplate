@@ -11,9 +11,9 @@ dotenv.config({
 import { buildConfig } from 'payload/config'
 
 import { Pages } from './payload/collections/Pages'
-import BeforeLogin from './components/BeforeLogin'
 import { Users } from './payload/collections/Users'
 import { Media } from './payload/collections/Media'
+import BeforeLogin from './payload/components/BeforeLogin'
 
 export const serverEditorConfig = defaultEditorConfig;
 serverEditorConfig.features = [

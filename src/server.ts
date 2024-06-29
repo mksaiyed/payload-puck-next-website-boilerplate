@@ -9,7 +9,7 @@ dotenv.config({
 
 import express from 'express'
 
-import { getPayloadClient } from './getPayload'
+import { getPayloadClient } from './lib/utils/getPayload'
 
 const app = express()
 const PORT = parseInt(process.env.PORT || '3000')
